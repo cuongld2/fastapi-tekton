@@ -1,14 +1,17 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  generateName: tekton-pipelinerun-
+  name: tekton-pipelinerun-1
 spec:
   serviceAccountName: docker-login
   pipelineRef:
     name: tekton-pipeline
+  podTemplate:
+    securityContext:
+      fsGroup: 65532
   params:
     - name: IMAGE
-      value: cuongld2/fastapi-service-tekton
+      value: cuongld2/fastapi-tekton
     - name: TAG
       value: latest
   workspaces:

@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: book-management-deployment
+  name: book-management
   labels:
     app: book-management
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: book-management
-          image: cuongld2/fastapi-service-tekton:latest
+          image: cuongld2/fastapi-tekton:latest
           imagePullPolicy: Always
           envFrom:
           - secretRef:
@@ -55,3 +55,16 @@ spec:
                   name: mysecret
                   key: DB_NAME
                   optional: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-management-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: book-management
+  ports:
+    - name: http
+      port: 8085
+      targetPort: 8084

@@ -7,7 +7,7 @@ spec:
     - name: IMAGE
       description: Image description
       type: string
-      default: "docker.io/cuongld2/fastapi-service-tekton"
+      default: "docker.io/cuongld2/fastapi-tekton"
     - name: TAG
       description: Preferred tag
       default: latest
@@ -48,9 +48,7 @@ spec:
       params:
         - name: script
           value: |
-            kubectl apply --filename https://raw.githubusercontent.com/cuongld2/fastapi-tekton/main/kubernetes/deploy.yml
+            kubectl apply --filename https://raw.githubusercontent.com/cuongld2/fastapi-tekton/main/kubernetes/deployment.yml
       workspaces:
         - name: manifest-dir
           workspace: linked-workspace
-        - name: ssh-directory
-          workspace: git-credentials
