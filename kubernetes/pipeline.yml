@@ -1,13 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: nodejs-pipeline
+  name: tekton-pipeline
 spec:
   params:
     - name: IMAGE
       description: Image description
       type: string
-      default: "docker.io/joeshiett/nodejs-app"
+      default: "docker.io/cuongld2/fastapi-service-tekton"
     - name: TAG
       description: Preferred tag
       default: latest
@@ -22,7 +22,7 @@ spec:
           workspace: linked-workspace
       params:
         - name: url
-          value: https://github.com/joeshiett/tekton-test
+          value: https://github.com/cuongld2/fastapi-tekton
         - name: subdirectory
           value: ""
         - name: deleteExisting
@@ -38,8 +38,6 @@ spec:
       params:
         - name: IMAGE
           value: "$(params.IMAGE):$(params.TAG)"
-        - name: CONTEXT
-          value: "src"
         - name: FORMAT
           value: "docker"
     - name: create-deployment
@@ -50,7 +48,9 @@ spec:
       params:
         - name: script
           value: |
-            kubectl apply --filename https://raw.githubusercontent.com/Joeshiett/tekton-test/main/manifest/deploy.yml
+            kubectl apply --filename https://raw.githubusercontent.com/cuongld2/fastapi-tekton/main/kubernetes/deploy.yml
       workspaces:
         - name: manifest-dir
           workspace: linked-workspace
+        - name: ssh-directory
+          workspace: git-credentials

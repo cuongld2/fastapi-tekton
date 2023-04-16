@@ -1,14 +1,14 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  generateName: nodejs-pipelinerun-
+  generateName: tekton-pipelinerun-
 spec:
   serviceAccountName: docker-login
   pipelineRef:
-    name: nodejs-pipeline
+    name: tekton-pipeline
   params:
     - name: IMAGE
-      value: joeshiett/nodejs-app
+      value: cuongld2/fastapi-service-tekton
     - name: TAG
       value: latest
   workspaces:
