@@ -27,11 +27,22 @@ spec:
           value: ""
         - name: deleteExisting
           value: "true"
+    - name: run-unit-integration-test
+      taskRef:
+        name: pytest-task
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: linked-workspace
+      params:
+        - name: PYTHON_IMAGE
+          value: "docker.io/python:3.9"
     - name: build-push-image
       taskRef:
         name: buildah
       runAfter:
-        - fetch-repository
+        - run-unit-integration-test
       workspaces:
         - name: source
           workspace: linked-workspace
