@@ -19,9 +19,6 @@ spec:
         - name: book-management
           image: cuongld2/fastapi-tekton:latest
           imagePullPolicy: Always
-          envFrom:
-          - secretRef:
-            name: docker-secret
           ports:
             - containerPort: 8084
           env:
