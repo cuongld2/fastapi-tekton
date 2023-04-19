@@ -11,5 +11,3 @@ https://dev.to/leandronsp/tekton-ci-part-iii-listen-to-github-events-1h3i
 8. Send webhook
 
 update
-
-
