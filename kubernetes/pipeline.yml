@@ -50,7 +50,7 @@ spec:
       taskRef:
         name: pytest-task
       runAfter:
-        - fetch-repository
+        - run-unit-test
       workspaces:
         - name: source
           workspace: linked-workspace
@@ -63,7 +63,7 @@ spec:
       taskRef:
         name: buildah
       runAfter:
-        - run-unit-integration-test
+        - run-integration-test
       workspaces:
         - name: source
           workspace: linked-workspace
