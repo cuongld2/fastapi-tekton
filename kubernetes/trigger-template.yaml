@@ -15,7 +15,7 @@ spec:
       generateName: tekton-pipelinerun-
     spec:
       pipelineRef:
-        name: my-pipeline
+        name: tekton-pipeline
       workspaces:
       - name: linked-workspace
         volumeClaimTemplate:
