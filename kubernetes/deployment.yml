@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: book-management
+  namespace: tekton
   labels:
     app: book-management
 spec:
@@ -57,6 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: book-management-service
+  namespace: tekton
 spec:
   type: LoadBalancer
   selector:

@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   generateName: tekton-pipelinerun-
+  namespace: tekton
 spec:
   serviceAccountName: docker-login
   pipelineRef:
