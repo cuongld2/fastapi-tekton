@@ -14,6 +14,10 @@ spec:
       value: cuongld2/fastapi-tekton
     - name: TAG
       value: latest
+    - name: repo-url
+      value: https://github.com/cuongld2/fastapi-tekton
+    - name: revision
+      value: main
   workspaces:
     - name: linked-workspace
       volumeClaimTemplate:

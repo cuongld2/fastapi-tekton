@@ -11,6 +11,10 @@ spec:
     - name: TAG
       description: Preferred tag
       default: latest
+    - name: repo-url
+      type: string
+    - name: revision
+      type: string
   workspaces:
     - name: linked-workspace
   tasks:
@@ -22,11 +26,13 @@ spec:
           workspace: linked-workspace
       params:
         - name: url
-          value: https://github.com/cuongld2/fastapi-tekton
+          value: "$(params.repo-url)"
         - name: subdirectory
           value: ""
         - name: deleteExisting
           value: "true"
+        - name: revision
+          value: "$(params.revision)"
     - name: run-unit-integration-test
       taskRef:
         name: pytest-task
