@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: tekton-pipeline
-  namespace: tekton
 spec:
   params:
     - name: IMAGE
@@ -81,7 +80,7 @@ spec:
       params:
         - name: script
           value: |
-            kubectl apply --filename https://raw.githubusercontent.com/cuongld2/fastapi-tekton/main/kubernetes/deployment.yml
+            kubectl apply --filename kubernetes/pipeline.yml
       workspaces:
         - name: manifest-dir
           workspace: linked-workspace
