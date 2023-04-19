@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: tekton-pipelinerun-1
+  generateName: tekton-pipelinerun-
 spec:
   serviceAccountName: docker-login
   pipelineRef:
@@ -15,7 +15,7 @@ spec:
     - name: TAG
       value: latest
     - name: repo-url
-      value: https://github.com/cuongld2/fastapi-tekton
+      value: https://github.com/cuongld2/fastapi-tekton.git
     - name: revision
       value: main
   workspaces:

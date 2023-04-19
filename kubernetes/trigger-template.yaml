@@ -16,7 +16,7 @@ spec:
       pipelineRef:
         name: my-pipeline
       workspaces:
-      - name: shared-data
+      - name: linked-workspace
         volumeClaimTemplate:
           spec:
             accessModes:
