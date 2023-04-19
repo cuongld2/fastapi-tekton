@@ -33,7 +33,7 @@ spec:
           value: "true"
         - name: revision
           value: "$(params.revision)"
-    - name: run-unit-integration-test
+    - name: run-unit-test
       taskRef:
         name: pytest-task
       runAfter:
@@ -44,6 +44,21 @@ spec:
       params:
         - name: PYTHON_IMAGE
           value: "docker.io/python:3.9"
+        - name: SOURCE_PATH
+          value: "test_unit.py"
+    - name: run-integration-test
+      taskRef:
+        name: pytest-task
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: linked-workspace
+      params:
+        - name: PYTHON_IMAGE
+          value: "docker.io/python:3.9"
+        - name: SOURCE_PATH
+          value: "test_integration.py"
     - name: build-push-image
       taskRef:
         name: buildah
