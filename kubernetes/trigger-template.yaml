@@ -4,30 +4,33 @@ metadata:
   name: github-pr-trigger-template
   namespace: tekton
 spec:
-  params:
-  - name: revision
-    default: main
-  - name: repo-url
-    default: https://github.com/cuongld2/fastapi-tekton.git
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
       generateName: tekton-pipelinerun-
     spec:
+      serviceAccountName: docker-login
       pipelineRef:
         name: tekton-pipeline
-      workspaces:
-      - name: linked-workspace
-        volumeClaimTemplate:
-          spec:
-            accessModes:
-            - ReadWriteOnce
-            resources:
-              requests:
-                storage: 1Gi
-      params:
-      - name: repo-url
-        value: $(tt.params.repo-url)
-      - name: revision
-        value: $(tt.params.revision)
+      podTemplate:
+        securityContext:
+          fsGroup: 65532
+        params:
+          - name: IMAGE
+            value: cuongld2/fastapi-tekton
+          - name: TAG
+            value: latest
+          - name: repo-url
+            value: https://github.com/cuongld2/fastapi-tekton.git
+          - name: revision
+            value: main
+        workspaces:
+          - name: linked-workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 10Gi
