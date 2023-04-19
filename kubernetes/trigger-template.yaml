@@ -4,6 +4,10 @@ metadata:
   name: github-pr-trigger-template
   namespace: tekton
 spec:
+  params:
+    - name: revision
+      default: main
+    - name: repo-url
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -22,9 +26,9 @@ spec:
           - name: TAG
             value: latest
           - name: repo-url
-            value: https://github.com/cuongld2/fastapi-tekton.git
+            value: $(tt.params.repo-url)
           - name: revision
-            value: main
+            value: $(tt.params.revision)
         workspaces:
           - name: linked-workspace
             volumeClaimTemplate:
