@@ -8,6 +8,7 @@ spec:
     - name: revision
       default: main
     - name: repo-url
+    - name: contenttype
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -29,6 +30,8 @@ spec:
             value: $(tt.params.repo-url)
           - name: revision
             value: $(tt.params.revision)
+          - name: contenttype
+            value: $(tt.params.contenttype)
         workspaces:
           - name: linked-workspace
             volumeClaimTemplate:
