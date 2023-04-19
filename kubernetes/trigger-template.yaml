@@ -8,6 +8,7 @@ spec:
   - name: revision
     default: main
   - name: repo-url
+    default: https://github.com/cuongld2/fastapi-tekton.git
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
