@@ -10,4 +10,4 @@ spec:
   - name: repo-url
     value: $(body.repository.clone_url)
   - name: contenttype
-    value: $(header.Content-Type)
+    value: application/json

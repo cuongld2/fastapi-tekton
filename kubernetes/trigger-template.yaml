@@ -21,23 +21,23 @@ spec:
       podTemplate:
         securityContext:
           fsGroup: 65532
-        params:
-          - name: IMAGE
-            value: cuongld2/fastapi-tekton
-          - name: TAG
-            value: latest
-          - name: repo-url
-            value: $(tt.params.repo-url)
-          - name: revision
-            value: $(tt.params.revision)
-          - name: contenttype
-            value: $(tt.params.contenttype)
-        workspaces:
-          - name: linked-workspace
-            volumeClaimTemplate:
-              spec:
-                accessModes:
-                  - ReadWriteOnce
-                resources:
-                  requests:
-                    storage: 10Gi
+      params:
+        - name: IMAGE
+          value: cuongld2/fastapi-tekton
+        - name: TAG
+          value: latest
+        - name: repo-url
+          value: $(tt.params.repo-url)
+        - name: revision
+          value: $(tt.params.revision)
+        - name: contenttype
+          value: $(tt.params.contenttype)
+      workspaces:
+        - name: linked-workspace
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 10Gi
